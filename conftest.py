@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
-BASE_URL = "https://stellarburgers.nomoreparties.site/"
+BASE_URL = "https://stellarburgers.education-services.ru/"
 
 @pytest.fixture(scope="function")
 def driver():

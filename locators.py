@@ -28,26 +28,26 @@ ACTIVE_TAB = (By.XPATH, "//div[contains(@class,'tab_tab_type_current')]")
 LINK_REGISTER = (By.XPATH, "//a[contains(text(),'Зарегистрироваться')]")
 
 # Поле «Имя»
-INPUT_NAME = (By.XPATH, "//input[@name='name']")
+INPUT_NAME = (By.XPATH, ".//label[text()='Имя']//parent::*/input[@type='text' and @name='name']")
 
 # Поле «Email»
-INPUT_EMAIL = (By.XPATH, "//input[@name='email']")
+INPUT_EMAIL = (By.XPATH, ".//label[text()='Email']//parent::*/input[@type='text' and @name='name']")
 
 # Поле «Пароль»
-INPUT_PASSWORD = (By.XPATH, "//input[@name='password']")
+INPUT_PASSWORD = (By.XPATH,  ".//input[@type='password' and @name='Пароль']")
 
 # Кнопка «Зарегистрироваться» (submit)
-BUTTON_REGISTER_SUBMIT = (By.XPATH, "//button[contains(text(),'Зарегистрироваться')]")
+BUTTON_REGISTER_SUBMIT = (By.XPATH, ".//button[text()='Зарегистрироваться']")
 
 # Сообщение об ошибке (некорректный пароль)
-ERROR_INVALID_PASSWORD = (By.XPATH, "//p[contains(text(),'Некорректный пароль')]")
+ERROR_INVALID_PASSWORD = (By.XPATH, ".//p[contains(@class, 'input__error')]")
 
 # ---------- Страница входа ----------
 # Поле Email
-INPUT_EMAIL_LOGIN = (By.XPATH, "//input[@name='email']")
+INPUT_EMAIL_LOGIN = (By.XPATH, ".//label[text()='Email']//parent::*/input[@type='text' and @name='name']")
 
 # Поле Пароль
-INPUT_PASSWORD_LOGIN = (By.XPATH, "//input[@name='password']")
+INPUT_PASSWORD_LOGIN = (By.XPATH, ".//input[@type='password' and @name='Пароль']")
 
 # Кнопка «Войти»
 BUTTON_LOGIN_SUBMIT = (By.XPATH, "//button[contains(text(),'Войти')]")
