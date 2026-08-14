@@ -6,14 +6,26 @@ from conftest import BASE_URL
 
 class TestConstructor:
 
-    def test_navigate_to_sections(self, driver):
-        """Проверка переходов к разделам: «Булки», «Соусы», «Начинки»."""
+    def test_buns_section_active_after_click(self, driver):
+        """Проверка активации раздела «Булки» после клика."""
         driver.get(BASE_URL)
-
-
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(TAB_BUNS))
 
 
+        bun_tab = driver.find_element(*TAB_BUNS)
+        driver.execute_script("arguments[0].click();", bun_tab)
+
+        active_tab = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, "//div[contains(@class,'tab_tab_type_current')]//span[text()='Булки']")
+            )
+        )
+        assert active_tab.is_displayed(), "Раздел «Булки» не активирован"
+
+    def test_sauces_section_active_after_click(self, driver):
+        """Проверка активации раздела «Соусы» после клика."""
+        driver.get(BASE_URL)
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(TAB_SAUCES))
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(TAB_SAUCES)).click()
         active_tab = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located(
@@ -22,7 +34,10 @@ class TestConstructor:
         )
         assert active_tab.is_displayed(), "Раздел «Соусы» не активирован"
 
-
+    def test_fillings_section_active_after_click(self, driver):
+        """Проверка активации раздела «Начинки» после клика."""
+        driver.get(BASE_URL)
+        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(TAB_FILLINGS))
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(TAB_FILLINGS)).click()
         active_tab = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located(
@@ -30,12 +45,3 @@ class TestConstructor:
             )
         )
         assert active_tab.is_displayed(), "Раздел «Начинки» не активирован"
-
-
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable(TAB_BUNS)).click()
-        active_tab = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located(
-                (By.XPATH, "//div[contains(@class,'tab_tab_type_current')]//span[text()='Булки']")
-            )
-        )
-        assert active_tab.is_displayed(), "Раздел «Булки» не активирован"
